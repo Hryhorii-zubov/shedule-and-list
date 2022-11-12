@@ -243,8 +243,9 @@ class MyApp(App):
             self.label.text = self.december[self.number][1]
             self.text_input.text = self.december[self.number][1]
         
-        if "Понеділок" in self.november[self.number][0]:
-            self.label_shedule.text = self.november[self.number][2]["Понеділок"]
+        if self.november[self.number][0] == "Понеділок":
+            print(self.november[self.number][2])
+            
         
         self.sm.transition = RiseInTransition()
         self.sm.current = "second"
@@ -266,7 +267,12 @@ class MyApp(App):
             for m in month:
                 i = 1
                 while i <= m[1]:
-                    m[0][str(i)] = [days_in_week[current_day], "", {"Понеділок": "matem\nukr_mдпаавдавщадвщад", "Вівторок": "lololol"}]
+                    m[0][str(i)] = [days_in_week[current_day], "", ""]
+
+                    if m[0][str(i)][0] == "Понеділок":
+                        m[0][str(i)][2] = {"Математика": ""}
+                    
+                    print(m[0][str(i)])
                     i += 1
                     if current_day < 6:
                         current_day += 1
