@@ -222,6 +222,7 @@ class MyApp(App):
         self.text = ""
         self.number = ""
         self.label.text = ""
+        self.label_shedule.text = ""
         
         self.sm.transition = FallOutTransition()
         self.sm.current = str(self.back_screen)
@@ -239,14 +240,15 @@ class MyApp(App):
         if self.back_screen == "11":
             self.label.text = self.november[self.number][1]
             self.text_input.text = self.november[self.number][1]
+
+            if self.november[self.number][0] == "Понеділок":
+                self.label_shedule.text = self.november[self.number][2]["Понеділок"][0]
+
         elif self.back_screen == "12":
             self.label.text = self.december[self.number][1]
             self.text_input.text = self.december[self.number][1]
         
-        if self.november[self.number][0] == "Понеділок":
-            print(self.november[self.number][2])
-            
-        
+
         self.sm.transition = RiseInTransition()
         self.sm.current = "second"
         
@@ -259,7 +261,7 @@ class MyApp(App):
 
             days_in_november = 30
             days_in_december = 31
-
+            shedule_dict = {"Понеділок": ["Matem\nUrk_mova", ""], "Вівторок": ["", ""], "Середа": ["", ""], "Четвер": ["", ""], "Пятниця": ["", ""], "Субота": ["", ""], "Неділя": ["", ""]}
             month = [[november, days_in_november], [december, days_in_december]]
             
             days_in_week = ["Понеділок", "Вівторок", "Середа", "Четвер", "Пятниця", "Субота", "Неділя"]
@@ -267,12 +269,8 @@ class MyApp(App):
             for m in month:
                 i = 1
                 while i <= m[1]:
-                    m[0][str(i)] = [days_in_week[current_day], "", ""]
-
-                    if m[0][str(i)][0] == "Понеділок":
-                        m[0][str(i)][2] = {"Математика": ""}
+                    m[0][str(i)] = [days_in_week[current_day], "", shedule_dict]
                     
-                    print(m[0][str(i)])
                     i += 1
                     if current_day < 6:
                         current_day += 1
